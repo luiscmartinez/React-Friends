@@ -1,21 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import FriendsList from './FriendsList'
+import './App.css'
+import { people } from './people'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      friends: []
+    }
+  }
+
+  componentDidMount() {
+    // taking people, from people.js
+    // calling setState to add people to our friends array.
+    // ANY type of data fetching, SHOULD exist inside of CDM
+    this.setState({ friends: people })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome hawmies</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <FriendsList friends={this.state.friends} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
